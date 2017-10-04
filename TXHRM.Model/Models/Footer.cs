@@ -10,7 +10,6 @@ namespace TXHRM.Model.Models
         public int ID { get; set; }
 
         [Required]
-        [Display(Name = "Nội dung")]
         public string Content { get; set; }
         public bool Status { get; set; }
     }

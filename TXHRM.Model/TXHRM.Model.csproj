@@ -49,10 +49,13 @@
   <ItemGroup>
     <Compile Include="Abstracts\Auditable.cs" />
     <Compile Include="Abstracts\IAuditable.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Footer.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\MenuGroup.cs" />
     <Compile Include="Models\Page.cs" />
+    <Compile Include="Models\Position.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostCategory.cs" />
     <Compile Include="Models\PostTag.cs" />
@@ -60,6 +63,7 @@
     <Compile Include="Models\SystemConfig.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\VisitorStatistic.cs" />
+    <Compile Include="Models\WorkingProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

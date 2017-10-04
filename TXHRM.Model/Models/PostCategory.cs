@@ -13,11 +13,9 @@ namespace TXHRM.Model.Models
     {
 
         [Key]
-        [Display(Name = "Mã chủ đề")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        [Display(Name = "Tên chủ đề")]
         [Required(ErrorMessage = "Hãy nhập tên chủ đề")]
         [MaxLength(256)]
         public string Name { get; set; }
@@ -28,10 +26,8 @@ namespace TXHRM.Model.Models
         public string Alias { get; set; }
 
         [MaxLength(512)]
-        [Display(Name = "Mô tả")]
         public string Description { get; set; }
 
-        [Display(Name = "Thứ tự xuất hiện")]
         [Required(ErrorMessage = "Hãy nhập thứ tự xuất hiện của chủ đề")]
         public int DisplayOrder { get; set; }
 
@@ -39,7 +35,6 @@ namespace TXHRM.Model.Models
 
         public bool? HomeFlag { get; set; }
 
-        [Display(Name = "Ảnh bài viết")]
         [MaxLength(256)]
         public string Image { get; set; }
         //Thuộc tính navigation
