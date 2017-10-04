@@ -12,9 +12,12 @@ namespace TXHRM.Model.Models
     public class PostTag
     {
         [Key]
-        public int TagID { get; set; }
+        [Column(TypeName = "varchar",Order =1)]
+        [MaxLength(50)]
+        public string TagID { get; set; }
 
         [Key]
+        [Column(Order = 2)]
         public int PostID { get; set; }
 
         //Thuộc tính navigation

@@ -22,11 +22,12 @@ namespace TXHRM.Model.Models
 
         [Required]
         public DateTime StartDate { get; set; }
-
+        [Required]
         public DateTime EndDate { get; set; }
 
         //Navigation Properties
         [ForeignKey("EmployeeID")]
+        
         public virtual Employee Employee { get; set; }
 
         [ForeignKey("DepartmentID")]
