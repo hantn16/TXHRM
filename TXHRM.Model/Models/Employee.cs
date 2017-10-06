@@ -40,7 +40,7 @@ namespace TXHRM.Model.Models
         public int PositionID { get; set; }
 
         //Navigation Properties
-        public virtual ICollection<WorkingProcess> WorkingProcesses { get; set; }
+        public virtual IEnumerable<WorkingProcess> WorkingProcesses { get; set; }
 
         [ForeignKey("PositionID")]
         public virtual Position Position { get; set; }

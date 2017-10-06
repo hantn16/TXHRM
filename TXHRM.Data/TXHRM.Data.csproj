@@ -58,6 +58,18 @@
     <Compile Include="Migrations\201710041613135_InitialDb.Designer.cs">
       <DependentUpon>201710041613135_InitialDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710060956007_1stEdit.cs" />
+    <Compile Include="Migrations\201710060956007_1stEdit.Designer.cs">
+      <DependentUpon>201710060956007_1stEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710061356575_2ndEdit.cs" />
+    <Compile Include="Migrations\201710061356575_2ndEdit.Designer.cs">
+      <DependentUpon>201710061356575_2ndEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710061404104_3rdEdit.cs" />
+    <Compile Include="Migrations\201710061404104_3rdEdit.Designer.cs">
+      <DependentUpon>201710061404104_3rdEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DepartmentRepository.cs" />
@@ -94,6 +106,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710041613135_InitialDb.resx">
       <DependentUpon>201710041613135_InitialDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710060956007_1stEdit.resx">
+      <DependentUpon>201710060956007_1stEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710061356575_2ndEdit.resx">
+      <DependentUpon>201710061356575_2ndEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710061404104_3rdEdit.resx">
+      <DependentUpon>201710061404104_3rdEdit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

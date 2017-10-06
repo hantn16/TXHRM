@@ -12,12 +12,13 @@ namespace TXHRM.Model.Models
     public class MenuGroup
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Required]
         public string Name { get; set; }
 
-        public virtual ICollection<Menu> Menus { get; set; }
+        public virtual IEnumerable<Menu> Menus { get; set; }
 
     }
 }

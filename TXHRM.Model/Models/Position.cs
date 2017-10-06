@@ -12,6 +12,7 @@ namespace TXHRM.Model.Models
     public class Position
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Required]
@@ -21,8 +22,8 @@ namespace TXHRM.Model.Models
         public bool Status { get; set; }
 
         //Navigation Properties
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual IEnumerable<Employee> Employees { get; set; }
 
-        public virtual ICollection<WorkingProcess> WorkingProcesses { get; set; }
+        public virtual IEnumerable<WorkingProcess> WorkingProcesses { get; set; }
     }
 }

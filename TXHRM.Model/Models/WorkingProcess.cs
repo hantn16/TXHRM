@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TXHRM.Model.Models
 {
@@ -12,6 +8,7 @@ namespace TXHRM.Model.Models
     public class WorkingProcess
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long ID { get; set; }
 
         public long EmployeeID { get; set; }
@@ -22,12 +19,12 @@ namespace TXHRM.Model.Models
 
         [Required]
         public DateTime StartDate { get; set; }
+
         [Required]
         public DateTime EndDate { get; set; }
 
         //Navigation Properties
         [ForeignKey("EmployeeID")]
-        
         public virtual Employee Employee { get; set; }
 
         [ForeignKey("DepartmentID")]
@@ -35,6 +32,5 @@ namespace TXHRM.Model.Models
 
         [ForeignKey("PositionID")]
         public virtual Position Position { get; set; }
-
     }
 }

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TXHRM.Model.Models
 {
@@ -23,8 +19,8 @@ namespace TXHRM.Model.Models
         [MaxLength(50)]
         [Required]
         public string Type { get; set; }
-        //Thuộc tính navigation
-        public virtual ICollection<PostTag> PostTags { get; set; }
 
+        //Thuộc tính navigation
+        public virtual IEnumerable<PostTag> PostTags { get; set; }
     }
 }

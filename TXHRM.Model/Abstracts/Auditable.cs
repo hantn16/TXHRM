@@ -19,7 +19,7 @@ namespace TXHRM.Model.Abstracts
         public string CreatedBy { get; set; }
 
         [Display(Name = "Ngày sửa")]
-        public DateTime ModifiedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
 
         [Display(Name = "Người sửa")]
         public string ModifiedBy { get; set; }

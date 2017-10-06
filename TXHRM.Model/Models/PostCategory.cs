@@ -16,7 +16,7 @@ namespace TXHRM.Model.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        [Required(ErrorMessage = "Hãy nhập tên chủ đề")]
+        [Required]
         [MaxLength(256)]
         public string Name { get; set; }
 
@@ -28,21 +28,20 @@ namespace TXHRM.Model.Models
         [MaxLength(512)]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Hãy nhập thứ tự xuất hiện của chủ đề")]
-        public int DisplayOrder { get; set; }
+        public int? DisplayOrder { get; set; }
 
-        public int ParentID { get; set; }
+        public int? ParentID { get; set; }
 
         public bool? HomeFlag { get; set; }
 
         [MaxLength(256)]
         public string Image { get; set; }
         //Thuộc tính navigation
-        public virtual ICollection<Post> Posts { get; set; }
+        public virtual IEnumerable<Post> Posts { get; set; }
 
         [ForeignKey("ParentID")]
         public virtual PostCategory ParentCategory { get; set; }
 
-        public virtual ICollection<PostCategory> ChildCategories { get; set; }
+        public virtual IEnumerable<PostCategory> ChildCategories { get; set; }
     }
 }

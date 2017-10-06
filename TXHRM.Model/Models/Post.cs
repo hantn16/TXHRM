@@ -17,7 +17,7 @@ namespace TXHRM.Model.Models
 
 
         [MaxLength(512)]
-        [Required(ErrorMessage = "Hãy nhập tiêu đề bài viết")]
+        [Required]
         public string Name { get; set; }
 
         [MaxLength(512)]
@@ -25,7 +25,7 @@ namespace TXHRM.Model.Models
         [Column(TypeName = "varchar")]
         public string Alias { get; set; }
 
-        [Required(ErrorMessage = "Hãy nhập nội dung")]
+        [Required]
         [DataType(DataType.MultilineText)]
         [Column(TypeName = "ntext")]
         public string Content { get; set; }
