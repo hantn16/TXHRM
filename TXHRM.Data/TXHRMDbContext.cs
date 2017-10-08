@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -9,7 +10,7 @@ using TXHRM.Model.Models;
 
 namespace TXHRM.Data
 {
-    public class TXHRMDbContext : DbContext
+    public class TXHRMDbContext : IdentityDbContext<ApplicationUser>
     {
         public TXHRMDbContext() : base("TXHRMConnection")
         {
@@ -31,9 +32,16 @@ namespace TXHRM.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<VisitorStatistic> VisitorStatistics { get; set; }
         public DbSet<WorkingProcess> WorkingProcesses { get; set; }
+        public DbSet<Error> Errors { get; set; }
 
+        public static TXHRMDbContext Create()
+        {
+            return new TXHRMDbContext();
+        }
         protected override void OnModelCreating(DbModelBuilder dbModelBuilder)
         {
+            dbModelBuilder.Entity<IdentityUserRole>().HasKey(c => new { c.UserId, c.RoleId });
+            dbModelBuilder.Entity<IdentityUserLogin>().HasKey(c => c.UserId);
         }
     }
 }

@@ -50,5 +50,7 @@ namespace TXHRM.Model.Models
 
         //Thuộc tính Navigation
         public virtual PostCategory PostCategory { get; set; }
+
+        public IEnumerable<PostTag> PostTags { get; set; }
     }
 }

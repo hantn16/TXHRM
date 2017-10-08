@@ -8,10 +8,10 @@ namespace TXHRM.Data.Infrastructure
 {
     public class DbFactory : Disposable, IDbFactory
     {
-        TXHRMDbContext dbContext;
+        private TXHRMDbContext dbContext;
         public TXHRMDbContext Init()
         {
-            return dbContext?? (new TXHRMDbContext()) ;
+            return dbContext?? (dbContext = new TXHRMDbContext()) ;
         }
         protected override void DisposeCore()
         {
