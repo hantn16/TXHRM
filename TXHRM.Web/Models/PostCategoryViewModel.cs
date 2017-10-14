@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,9 +10,10 @@ namespace TXHRM.Web.Models
     {
         public int ID { get; set; }
 
-
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         public string Alias { get; set; }
 
         public string Description { get; set; }
@@ -30,6 +32,7 @@ namespace TXHRM.Web.Models
 
         public virtual IEnumerable<PostCategoryViewModel> ChildCategories { get; set; }
 
+        [Required]
         public bool Status { get; set; }
 
         public DateTime CreatedDate { get; set; }

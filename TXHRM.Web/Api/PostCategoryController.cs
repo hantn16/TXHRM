@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 using TXHRM.Model.Models;
 using TXHRM.Service;
 using TXHRM.Web.Infrastructure.Core;
@@ -13,37 +14,103 @@ using TXHRM.Web.Models;
 
 namespace TXHRM.Web.Api
 {
-    [RoutePrefix("Api/PostCategory")]
+    [RoutePrefix("api/postCategory")]
     public class PostCategoryController : BaseApiController
     {
+        #region Initialize
         IPostCategoryService _postCategoryService;
         IErrorService _errorService;
-        public PostCategoryController(IErrorService errorService,IPostCategoryService postCategoryService) : base(errorService)
+        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) : base(errorService)
         {
             this._postCategoryService = postCategoryService;
             this._errorService = errorService;
         }
+        #endregion
+
+        #region GetMethod
         [Route("GetAll")]
+        [HttpGet]
         public HttpResponseMessage Get(HttpRequestMessage requestMessage)
         {
-            return CreateHttpResponse(requestMessage, () => 
+            return CreateHttpResponse(requestMessage, () =>
             {
-                var listCategory = _postCategoryService.GetAll();
-                var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
-                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, listPostCategoryVm);
+                int totalRow = 0;
+                IEnumerable<PostCategory> listCategory = _postCategoryService.GetAll();
+
+                totalRow = listCategory.Count();
+
+                var responseData = Mapper.Map<IEnumerable<PostCategory>, IEnumerable<PostCategoryViewModel>>(listCategory);
+                PaginationSet<PostCategoryViewModel> paginationSet = new PaginationSet<PostCategoryViewModel>()
+                {
+                    Items = responseData,
+                    Page = 0,
+                    TotalCount = totalRow,
+                    TotalPages = 1
+                };
+                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, paginationSet);
                 return responseMessage;
-                
+
             });
         }
-
-        // GET api/<controller>/5
-        public String Get(int id)
+        [Route("getall")]
+        [HttpGet]
+        public HttpResponseMessage Get(HttpRequestMessage requestMessage, int page, int pageSize, string keyWord = null)
         {
-            return "value";
-        }
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                int totalRow = 0;
+                IEnumerable<PostCategory> listCategory = _postCategoryService.GetAll();
+                if (!string.IsNullOrEmpty(keyWord))
+                {
+                    listCategory = _postCategoryService.GetAll(keyWord);
+                }
 
-        [Route("Create")]
-        public HttpResponseMessage Post(HttpRequestMessage requestMessage,[FromBody]PostCategoryViewModel postCategoryViewModel)
+                totalRow = listCategory.Count();
+                var query = listCategory.OrderByDescending(c => c.CreatedDate).Skip(page * pageSize).Take(pageSize);
+                var abc = Math.Ceiling(1.5);
+                var responseData = Mapper.Map<IEnumerable<PostCategory>, IEnumerable<PostCategoryViewModel>>(query);
+                PaginationSet<PostCategoryViewModel> paginationSet = new PaginationSet<PostCategoryViewModel>()
+                {
+                    Items = responseData,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, paginationSet);
+                return responseMessage;
+
+            });
+        }
+        [Route("getdetail")]
+        [HttpGet]
+        public HttpResponseMessage Get(HttpRequestMessage requestMessage, int id)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                var category = _postCategoryService.GetById(id);
+                var categoryVm = Mapper.Map<PostCategoryViewModel>(category);
+                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, categoryVm);
+                return responseMessage;
+            });
+        }
+        [Route("checknameunique")]
+        [HttpGet]
+        public HttpResponseMessage CheckNameUnique(HttpRequestMessage requestMessage, string checkValue)
+        {
+            return CreateHttpResponse(requestMessage, () =>
+            {
+                HttpResponseMessage responseMessage = null;
+                var listCategory = _postCategoryService.GetAll();
+                var category = listCategory.FirstOrDefault(c => c.Name == checkValue);
+                responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, (category == null ? new { Status = true} : new { Status = false }));
+                return responseMessage;
+            });
+        }
+        #endregion
+        #region PostMethod
+        [Route("create")]
+        [HttpPost]
+        public HttpResponseMessage Post(HttpRequestMessage requestMessage, [FromBody]PostCategoryViewModel postCategoryViewModel)
         {
             return CreateHttpResponse(requestMessage, () => {
                 HttpResponseMessage responseMessage = null;
@@ -62,16 +129,21 @@ namespace TXHRM.Web.Api
                 return responseMessage;
             });
         }
+        #endregion
 
-        [Route("Update")]
+        #region PutMethod
+        [Route("update")]
+        [HttpPut]
+        [AllowAnonymous]
         public HttpResponseMessage Put(HttpRequestMessage requestMessage, [FromBody]PostCategoryViewModel postCategoryViewModel)
         {
             return CreateHttpResponse(requestMessage, () => {
                 HttpResponseMessage responseMessage = null;
                 if (ModelState.IsValid)
                 {
-                    PostCategory postCategory = new PostCategory();
+                    PostCategory postCategory = _postCategoryService.GetById(postCategoryViewModel.ID);
                     postCategory.UpdateFromViewModel<PostCategory, PostCategoryViewModel>(postCategoryViewModel);
+                    postCategory.ModifiedDate = DateTime.Now;
                     _postCategoryService.Update(postCategory);
                     _postCategoryService.SaveChanges();
                     responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK);
@@ -83,17 +155,21 @@ namespace TXHRM.Web.Api
                 return responseMessage;
             });
         }
-
-        [Route("Delete")]
-        public HttpResponseMessage Delete(HttpRequestMessage requestMessage,int id)
+        #endregion
+        #region DeleteMethod
+        [Route("delete")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage Delete(HttpRequestMessage requestMessage, int id)
         {
             return CreateHttpResponse(requestMessage, () => {
                 HttpResponseMessage responseMessage = null;
                 if (ModelState.IsValid)
                 {
-                    _postCategoryService.Delete(id);
+                    var oldPostCategory = _postCategoryService.Delete(id);
                     _postCategoryService.SaveChanges();
-                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK);
+                    var responseData = Mapper.Map<PostCategory, PostCategoryViewModel>(oldPostCategory);
+                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, responseData);
                 }
                 else
                 {
@@ -102,5 +178,34 @@ namespace TXHRM.Web.Api
                 return responseMessage;
             });
         }
+        [Route("deletemulti")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage requestMessage, string jsonListID)
+        {
+            return CreateHttpResponse(requestMessage, () => {
+                HttpResponseMessage responseMessage = null;
+                if (ModelState.IsValid)
+                {
+                    List<int> listID = new JavaScriptSerializer().Deserialize<List<int>>(jsonListID);
+                    List<PostCategory> listDeletingPostCategory = new List<PostCategory>();
+
+                    foreach (var id in listID)
+                    {
+                        listDeletingPostCategory.Add(_postCategoryService.Delete(id));
+                    }
+                    _postCategoryService.SaveChanges();
+                    List<PostCategory> listDeletedPostCategory = listDeletingPostCategory;
+                    var responseData = Mapper.Map<List<PostCategory>, List<PostCategoryViewModel>>(listDeletedPostCategory);
+                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, responseData);
+                }
+                else
+                {
+                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                return responseMessage;
+            });
+        }
+        #endregion
     }
 }

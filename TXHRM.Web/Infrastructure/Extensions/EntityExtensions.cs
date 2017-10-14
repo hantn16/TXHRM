@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -12,7 +13,8 @@ namespace TXHRM.Web.Infrastructure.Extensions
     {
         public static void UpdateFromViewModel<T,TViewModel>(this T entity,TViewModel entityViewModel)
         {
-            List<PropertyInfo> property = entity.GetType().GetProperties().Where(c => c.GetMethod.IsVirtual==false).ToList();
+            var listproperty = entity.GetType().GetProperties();
+            List<PropertyInfo> property = entity.GetType().GetProperties().Where(c => c.GetMethod.IsFinal == true||c.GetMethod.IsVirtual==false).ToList();
             List<PropertyInfo> VMproperty = entityViewModel.GetType().GetProperties().Where(c => c.GetMethod.IsVirtual == false).ToList();
             foreach (var item in property)
             {

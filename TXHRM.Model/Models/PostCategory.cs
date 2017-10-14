@@ -18,6 +18,7 @@ namespace TXHRM.Model.Models
 
         [Required]
         [MaxLength(256)]
+        [Index(IsUnique =true)]
         public string Name { get; set; }
 
         [Required]

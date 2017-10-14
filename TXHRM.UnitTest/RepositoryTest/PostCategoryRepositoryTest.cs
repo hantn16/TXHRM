@@ -45,7 +45,7 @@ namespace TXHRM.UnitTest.RepositoryTest
             unitOfWork.Commit();
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.ID);
+            Assert.AreEqual(13, result.ID);
         }
     }
 }

@@ -148,6 +148,7 @@ namespace TXHRM.Data.Migrations
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.PostCategory", t => t.ParentID)
+                .Index(t=>t.Name,"NameIndex",true,false,null)
                 .Index(t => t.ParentID);
             
             CreateTable(

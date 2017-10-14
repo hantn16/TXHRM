@@ -14,6 +14,7 @@ namespace TXHRM.Web.Mappings
         {
             Mapper.Initialize(cfg => {
                 cfg.CreateMap<Post, PostViewModel>();
+                cfg.CreateMap<PostCategoryViewModel, PostCategory>();
                 cfg.CreateMap<PostCategory, PostCategoryViewModel>();
                 cfg.CreateMap<PostTag, PostTagViewModel>();
                 cfg.CreateMap<Tag, TagViewModel>();

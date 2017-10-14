@@ -15,6 +15,7 @@ namespace TXHRM.Service
         void Update(PostCategory postCategory);
         PostCategory Delete(int id);
         IEnumerable<PostCategory> GetAll();
+        IEnumerable<PostCategory> GetAll(string keyWord);
         IEnumerable<PostCategory> GetAllPaging(int page, int pageSize, out int totalRow);
         PostCategory GetById(int id);
         IEnumerable<PostCategory> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
@@ -42,6 +43,11 @@ namespace TXHRM.Service
         public IEnumerable<PostCategory> GetAll()
         {
             return _postCategoryRepository.GetAll();
+        }
+
+        public IEnumerable<PostCategory> GetAll(string keyWord)
+        {
+            return _postCategoryRepository.GetMulti(c=>c.Name.Contains(keyWord)||c.Alias.Contains(keyWord));
         }
 
         public IEnumerable<PostCategory> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
