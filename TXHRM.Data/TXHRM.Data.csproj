@@ -88,6 +88,10 @@
     <Compile Include="Migrations\201710120413327_SetUniqueAttribute.Designer.cs">
       <DependentUpon>201710120413327_SetUniqueAttribute.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710230625553_InheritAuditableClass.cs" />
+    <Compile Include="Migrations\201710230625553_InheritAuditableClass.Designer.cs">
+      <DependentUpon>201710230625553_InheritAuditableClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DepartmentRepository.cs" />
@@ -143,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710120413327_SetUniqueAttribute.resx">
       <DependentUpon>201710120413327_SetUniqueAttribute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710230625553_InheritAuditableClass.resx">
+      <DependentUpon>201710230625553_InheritAuditableClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

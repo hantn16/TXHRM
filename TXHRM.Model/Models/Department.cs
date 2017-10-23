@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace TXHRM.Model.Models
 {
     [Table("Department")]
-    public class Department
+    public class Department : Abstracts.Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -23,8 +23,6 @@ namespace TXHRM.Model.Models
         [MaxLength(50)]
         [Column(TypeName = "varchar")]
         public string Alias { get; set; }
-
-        public bool Status { get; set; }
 
         //Navigation Properties
         public virtual IEnumerable<Employee> Employees { get; set; }

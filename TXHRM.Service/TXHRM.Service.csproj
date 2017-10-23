@@ -40,10 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmployeeService.cs" />
     <Compile Include="ErrorService.cs" />
     <Compile Include="PostCategoryService.cs" />
     <Compile Include="PostService.cs" />
+    <Compile Include="PostTagService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TXHRM.Common\TXHRM.Common.csproj">

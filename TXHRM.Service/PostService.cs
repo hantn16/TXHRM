@@ -11,10 +11,11 @@ namespace TXHRM.Service
 {
     public interface IPostService
     {
-        void Add(Post post);
+        Post Add(Post post);
         void Update(Post post);
-        void Delete(int id);
+        Post Delete(int id);
         IEnumerable<Post> GetAll();
+        IEnumerable<Post> GetAll(string keyWord);
         IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow);
         Post GetById(int id);
         IEnumerable<Post> GetAllByTagPaging(string tag,int page, int pageSize, out int totalRow);
@@ -24,24 +25,48 @@ namespace TXHRM.Service
     {
         IPostRepository _postRepository;
         IUnitOfWork _unitOfWork;
-        public PostService(IPostRepository postRepository,IUnitOfWork unitOfWork)
+        ITagRepository _tagRepository;
+        IPostTagRepository _postTagRepository;
+        public PostService(IPostRepository postRepository,IUnitOfWork unitOfWork,ITagRepository tagRepository,IPostTagRepository postTagRepository)
         {
             this._postRepository = postRepository;
             this._unitOfWork = unitOfWork;
+            this._tagRepository = tagRepository;
+            this._postTagRepository = postTagRepository;
         }
-        public void Add(Post post)
+        public Post Add(Post post)
         {
-            _postRepository.Add(post);
+            var addedPost = _postRepository.Add(post);
+            _unitOfWork.Commit();
+            if (!String.IsNullOrEmpty(post.Tags))
+            {
+                var listTag = new TagService(_tagRepository,_unitOfWork).Add(post.Tags);
+                foreach (Tag tag in listTag)
+                {
+                    var postTag = new PostTag() {
+                        TagID = tag.ID,
+                        PostID = addedPost.ID
+                    };
+                    _postTagRepository.Add(postTag);
+                }
+                _unitOfWork.Commit();
+            }
+            return addedPost;
         }
 
-        public void Delete(int id)
+        public Post Delete(int id)
         {
-            _postRepository.Delete(id);
+            return _postRepository.Delete(id);
         }
 
         public IEnumerable<Post> GetAll()
         {
-            return _postRepository.GetAll();
+            return _postRepository.GetAll(new string[] { "PostCategory" });
+        }
+
+        public IEnumerable<Post> GetAll(string keyWord)
+        {
+            return _postRepository.GetMulti(c=>c.Name.Contains(keyWord)||c.Alias.Contains(keyWord), new string[] { "PostCategory" });
         }
 
         public IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
@@ -67,6 +92,21 @@ namespace TXHRM.Service
         public void Update(Post post)
         {
             _postRepository.Update(post);
+            _postTagRepository.DeleteMulti(c => c.PostID == post.ID);
+            if (!String.IsNullOrEmpty(post.Tags))
+            {
+                var listTag = new TagService(_tagRepository, _unitOfWork).Add(post.Tags);               
+                foreach (Tag tag in listTag)
+                {
+                    var postTag = new PostTag()
+                    {
+                        TagID = tag.ID,
+                        PostID = post.ID
+                    };
+                    _postTagRepository.Add(postTag);
+                }
+            }
+            _unitOfWork.Commit();
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace TXHRM.Model.Models
 {
     [Table("Employee")]
-    public class Employee
+    public class Employee : Abstracts.Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace TXHRM.Model.Models
 {
     [Table("Tag")]
-    public class Tag
+    public class Tag : Abstracts.Auditable
     {
         [Key]
         [Column(TypeName = "varchar")]

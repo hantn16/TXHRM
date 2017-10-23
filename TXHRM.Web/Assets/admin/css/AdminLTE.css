@@ -2688,6 +2688,7 @@ table.text-center,
 table.text-center td,
 table.text-center th {
   text-align: center;
+  vertical-align:middle;
 }
 .table.align th {
   text-align: left;

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace TXHRM.Model.Models
 {
     [Table("WorkingProcess")]
-    public class WorkingProcess
+    public class WorkingProcess : Abstracts.Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

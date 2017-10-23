@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace TXHRM.Model.Models
 {
     [Table("Slide")]
-    public class Slide
+    public class Slide : Abstracts.Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,7 +24,5 @@ namespace TXHRM.Model.Models
         public string Url { get; set; }
 
         public int? DisplayOrder { get; set; }
-
-        public bool Status { get; set; }
     }
 }

@@ -15,6 +15,7 @@ using TXHRM.Web.Models;
 namespace TXHRM.Web.Api
 {
     [RoutePrefix("api/postCategory")]
+    [Authorize]
     public class PostCategoryController : BaseApiController
     {
         #region Initialize
@@ -134,7 +135,6 @@ namespace TXHRM.Web.Api
         #region PutMethod
         [Route("update")]
         [HttpPut]
-        [AllowAnonymous]
         public HttpResponseMessage Put(HttpRequestMessage requestMessage, [FromBody]PostCategoryViewModel postCategoryViewModel)
         {
             return CreateHttpResponse(requestMessage, () => {
@@ -159,7 +159,6 @@ namespace TXHRM.Web.Api
         #region DeleteMethod
         [Route("delete")]
         [HttpDelete]
-        [AllowAnonymous]
         public HttpResponseMessage Delete(HttpRequestMessage requestMessage, int id)
         {
             return CreateHttpResponse(requestMessage, () => {
@@ -180,7 +179,6 @@ namespace TXHRM.Web.Api
         }
         [Route("deletemulti")]
         [HttpDelete]
-        [AllowAnonymous]
         public HttpResponseMessage DeleteMulti(HttpRequestMessage requestMessage, string jsonListID)
         {
             return CreateHttpResponse(requestMessage, () => {

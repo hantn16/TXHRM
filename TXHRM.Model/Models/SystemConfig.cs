@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace TXHRM.Model.Models
 {
     [Table("SystemConfig")]
-    public class SystemConfig
+    public class SystemConfig : Abstracts.Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

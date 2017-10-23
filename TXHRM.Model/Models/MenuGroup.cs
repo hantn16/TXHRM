@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace TXHRM.Model.Models
 {
     [Table("MenuGroup")]
-    public class MenuGroup
+    public class MenuGroup : Abstracts.Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

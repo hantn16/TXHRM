@@ -5,11 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TXHRM.Model.Abstracts;
 
 namespace TXHRM.Model.Models
 {
     [Table("Menu")]
-    public class Menu
+    public class Menu : Auditable
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
