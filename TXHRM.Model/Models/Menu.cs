@@ -30,9 +30,6 @@ namespace TXHRM.Model.Models
 
         public string Target { get; set; }
 
-        [Required]
-        public bool Status { get; set; }
-
         public virtual MenuGroup MenuGroup { get; set; }
     }
 }
