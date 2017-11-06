@@ -1,24 +1,16 @@
 ﻿import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './components/home/home.component'
-import { PostsComponent } from './components/post/posts.component';
 import { AppComponent } from './app.component';
+import { PageNotFoundComponent } from './not-found.component';
+
 const rootRoutes: Routes = [
-    { path: 'Admin', component: AppComponent }
-];
-const childRoutes: Routes = [
-    {
-        path: 'Admin', children: [
-            { path: '', redirectTo: '/Admin/home', pathMatch: 'full' },
-            { path: 'home', component: HomeComponent },
-            { path: 'posts', component: PostsComponent },
-        ]
-    }
+    { path: '', redirectTo: '/admin', pathMatch: 'full' },
+    { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(rootRoutes),RouterModule.forChild(childRoutes)],
+    imports: [RouterModule.forRoot(rootRoutes, {enableTracing: false})],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }

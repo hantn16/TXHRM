@@ -8,27 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var home_component_1 = require("./components/home/home.component");
-var posts_component_1 = require("./components/post/posts.component");
-var app_component_1 = require("./app.component");
+var not_found_component_1 = require("./not-found.component");
 var rootRoutes = [
-    { path: 'Admin', component: app_component_1.AppComponent }
-];
-var childRoutes = [
-    {
-        path: 'Admin', children: [
-            { path: '', redirectTo: '/Admin/home', pathMatch: 'full' },
-            { path: 'home', component: home_component_1.HomeComponent },
-            { path: 'posts', component: posts_component_1.PostsComponent },
-        ]
-    }
+    { path: '', redirectTo: '/admin', pathMatch: 'full' },
+    { path: '**', component: not_found_component_1.PageNotFoundComponent }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
     }
     AppRoutingModule = __decorate([
         core_1.NgModule({
-            imports: [router_1.RouterModule.forRoot(rootRoutes), router_1.RouterModule.forChild(childRoutes)],
+            imports: [router_1.RouterModule.forRoot(rootRoutes, { enableTracing: false })],
             exports: [router_1.RouterModule]
         })
     ], AppRoutingModule);

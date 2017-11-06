@@ -19,6 +19,7 @@ namespace TXHRM.Model.Models
         public string Address { set; get; }
 
         public DateTime? BirthDay { set; get; }
+        public string Avatar { set; get; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

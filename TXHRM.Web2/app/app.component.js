@@ -7,6 +7,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+//import { PostsComponent } from './admin/components/post/posts.component';
+//import { } from './components/home/home.component';
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.name = 'Angular';

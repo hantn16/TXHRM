@@ -32,7 +32,7 @@ namespace TXHRM.Data.Migrations
                 FullName = "Han Trinh"
 
             };
-            manager.Create(user, "123654$");
+            manager.Create(user, "anhhan");
 
             if (!roleManager.Roles.Any())
             {

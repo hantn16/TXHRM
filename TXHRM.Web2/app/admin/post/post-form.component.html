@@ -1,0 +1,125 @@
+﻿        <!-- form start -->
+<form class="form-horizontal" role="form" (ngSubmit)="onSubmit()" #postForm="ngForm">
+    <div class="box-body">
+        <!--Tên danh mục-->
+        <div class="form-group">
+            <label for="inputName" class="col-sm-2 control-label">Tiêu đề bài viết</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control"
+                       name="name"
+                       required
+                       [(ngModel)]="model.Name"
+                       placeholder="Tiêu đề bài viết">
+                <div class="alert alert-danger alert-dismissable" [hidden]="name.valid||name.pristine">Tiêu đề bài viết không được để trống</div>
+            </div>
+        </div>
+        <!--Tiêu đề SEO-->
+        <div class="form-group">
+            <label for="inputAlias" class="col-sm-2 control-label">Tiêu đề SEO</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control"
+                       required name="alias"
+                       [(ngModel)]="model.Alias"
+                       id="inputAlias"
+                       placeholder="Tiêu đề SEO">
+                <div class="alert alert-danger alert-dismissable" [hidden]="alias.valid||alias.pristine">Tiêu đề SEO không được để trống</div>
+            </div>
+        </div>
+        <!--Danh mục-->
+        <div class="form-group">
+            <label for="inputPostCategory" class="col-sm-2 control-label">Danh mục</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="CategoryID"
+                        [(ngModel)]="model.CategoryId"
+                        id="inputPostCategory">
+                    <option *ngFor="let item of listCategory" [value]="item.ID">{{item.Name}}</option>
+                </select>
+                <!--<input type="hidden" name="parentID" [(ngModel)]="model.CategoryId" />-->
+            </div>
+        </div>
+        <!--Mô tả-->
+        <div class="form-group">
+            <label for="inputDescription" class="col-sm-2 control-label">Mô tả</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control"
+                       name="description" [(ngModel)]="model.Description"
+                       id="inputDescription" placeholder="Mô tả">
+            </div>
+        </div>
+        <!--Ảnh đại diện-->
+        <div class="form-group">
+            <label for="inputImage" class="col-sm-2 control-label">Ảnh đại diện</label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="image"
+                           [(ngModel)]="model.Image"
+                           id="inputImage"
+                           placeholder="Ảnh đại diện">
+                    <span class="input-group-btn">
+                        <button type="button" (click)="ChooseImage()"
+                                class="btn btn-info">
+                            Chọn ảnh
+                        </button>
+                    </span>
+                </div><!-- /input-group -->
+            </div>
+        </div>
+        <!--Nội dung-->
+        <div class="form-group">
+            <label for="inputContent" class="col-sm-2 control-label">Nội dung</label>
+            <div class="col-sm-10">
+                <textarea type="text" class="form-control" name="content"
+                          ckeditor="ckeditorOptions"
+                          [(ngModel)]="model.Content"
+                          id="inputContent"
+                          placeholder="Mô tả"></textarea>
+            </div>
+        </div>
+        <!--Tags-->
+        <div class="form-group">
+            <label for="inputDescription" class="col-sm-2 control-label">Tags</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" 
+                       name="tags" [(ngModel)]="model.Tags" 
+                       id="inputDescription" placeholder="tag1, tag2,...">
+            </div>
+        </div>
+        <!--Hiện trên trang chủ-->
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="homeFlag" 
+                           [(ngModel)]="model.HomeFlag" [checked]="model.HomeFlag"> Hiện trên trang chủ
+                </label>
+            </div>
+        </div>
+        <!--Là tin tức nổi bật-->
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="hotFlag" 
+                           [(ngModel)]="model.HotFlag" 
+                           [checked]="model.HotFlag"> Là tin nổi bật 
+                </label>
+            </div>
+        </div>
+        <!--Tình trạng-->
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="status" 
+                           [checked]="model.Status"
+                           [(ngModel)]="model.Status"> Kích hoạt
+                </label>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" [disabled]="!postForm.form.valid" class="btn btn-info">Thêm mới</button>
+            <button routerLink="./" class="btn btn-default">Hủy bỏ</button>
+        </div>
+    </div>
+    <!-- /.box-footer -->
+</form>

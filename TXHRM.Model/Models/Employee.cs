@@ -35,8 +35,6 @@ namespace TXHRM.Model.Models
 
         public int DepartmentID { get; set; }
 
-        public long LeaderID { get; set; }
-
         public int PositionID { get; set; }
 
         //Navigation Properties
@@ -45,10 +43,10 @@ namespace TXHRM.Model.Models
         [ForeignKey("PositionID")]
         public virtual Position Position { get; set; }
 
-        [ForeignKey("LeaderID")]
-        public virtual Employee Leader { get; set; }
-
         [ForeignKey("DepartmentID")]
         public virtual Department Department { get; set; }
+
+        [InverseProperty("Leader")]
+        public virtual ICollection<Department> LedDepartments { get; set; }
     }
 }

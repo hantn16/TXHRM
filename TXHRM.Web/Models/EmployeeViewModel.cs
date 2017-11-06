@@ -7,7 +7,6 @@ namespace TXHRM.Web.Models
 {
     public class EmployeeViewModel
     {
-
         public long ID { get; set; }
 
         public string Name { get; set; }
@@ -28,8 +27,6 @@ namespace TXHRM.Web.Models
 
         public int DepartmentID { get; set; }
 
-        public long LeaderID { get; set; }
-
         public int PositionID { get; set; }
 
         //Navigation Properties
@@ -37,8 +34,17 @@ namespace TXHRM.Web.Models
 
         public virtual PositionViewModel Position { get; set; }
 
-        public virtual EmployeeViewModel Leader { get; set; }
-
         public virtual DepartmentViewModel Department { get; set; }
+
+        public virtual IEnumerable<DepartmentViewModel> LedDepartments { get; set; }
+
+        //Auditable Properties
+        public bool Status { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public string ModifiedBy { get; set; }
+        public string MetaKeyword { get; set; }
+        public string MetaDescription { get; set; }
     }
 }

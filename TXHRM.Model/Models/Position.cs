@@ -19,6 +19,9 @@ namespace TXHRM.Model.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
+        [Required]
+        [MaxLength(50)]
+        public string Alias { get; set; }
         //Navigation Properties
         public virtual IEnumerable<Employee> Employees { get; set; }
 

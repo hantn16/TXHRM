@@ -87,6 +87,7 @@ namespace TXHRM.Web2.Api
         }
         #endregion
         #region PostMethod
+        [Route("create")]
         public HttpResponseMessage Create(HttpRequestMessage requestMessage, PostViewModel postViewModel)
         {
             return CreateHttpResponse(requestMessage, () => {

@@ -190,7 +190,6 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,9 +208,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\admin\admin.component.html" />
+    <Content Include="app\admin\post\post-add.component.html" />
+    <Content Include="app\admin\post\post-form.component.html" />
     <Content Include="app\app.component.html" />
-    <Content Include="app\components\home\home.component.html" />
-    <Content Include="app\components\post\posts.component.html" />
+    <Content Include="app\admin\home\home.component.html" />
+    <Content Include="app\admin\post\post-list.component.html" />
     <Content Include="Assets\admin\css\AdminLTE.css" />
     <Content Include="Assets\admin\css\AdminLTE.min.css" />
     <Content Include="Assets\admin\css\skins\skin-black-light.css" />
@@ -3659,19 +3661,13 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="tsconfig.json" />
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\client\" />
     <Folder Include="App_Data\" />
     <Folder Include="Assets\client\" />
-    <Folder Include="Content\" />
-    <Folder Include="Scripts\" />
     <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
@@ -3966,13 +3962,22 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\admin\admin-routing.module.ts" />
+    <TypeScriptCompile Include="app\admin\admin.component.ts" />
+    <TypeScriptCompile Include="app\admin\admin.module.ts" />
+    <TypeScriptCompile Include="app\admin\post\post-add.component.ts" />
+    <TypeScriptCompile Include="app\admin\post\post-form.component.ts" />
+    <TypeScriptCompile Include="app\admin\post\post.component.ts" />
+    <TypeScriptCompile Include="app\admin\post\posts.module.ts" />
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\app-routing.module.ts" />
-    <TypeScriptCompile Include="app\components\home\home.component.ts" />
-    <TypeScriptCompile Include="app\components\post\posts.component.ts" />
+    <TypeScriptCompile Include="app\admin\home\home.component.ts" />
+    <TypeScriptCompile Include="app\admin\post\post-list.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
-    <TypeScriptCompile Include="app\services\post\post.service.ts" />
+    <TypeScriptCompile Include="app\admin\post\post.service.ts" />
+    <TypeScriptCompile Include="app\not-found.component.ts" />
+    <TypeScriptCompile Include="app\shared\services\notification.service.ts" />
     <TypeScriptCompile Include="Assets\admin\libs\ngBootbox\typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="Assets\admin\libs\ngBootbox\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Assets\admin\libs\ngBootbox\typings\tsd.d.ts" />

@@ -2,10 +2,13 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Microsoft.Owin.Cors;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using TXHRM.Data;
@@ -24,17 +27,20 @@ namespace TXHRM.Web.App_Start
             app.CreatePerOwinContext(TXHRMDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
-
+            //app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+            //app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
             app.CreatePerOwinContext<UserManager<ApplicationUser>>(CreateManager);
+            //Allow Cross origin for API
+            app.UseCors(CorsOptions.AllowAll);
             app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/oauth/token"),
                 Provider = new AuthorizationServerProvider(),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
-                AllowInsecureHttp = true,
-
+                AllowInsecureHttp = true
             });
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+            //app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
@@ -66,7 +72,10 @@ namespace TXHRM.Web.App_Start
                 var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin");
 
                 if (allowedOrigin == null) allowedOrigin = "*";
-
+                if (context.OwinContext.Response.Headers.ContainsKey("Access-Control-Allow-Origin"))
+                {
+                    context.OwinContext.Response.Headers.Remove("Access-Control-Allow-Origin");          
+                }
                 context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
 
                 UserManager<ApplicationUser> userManager = context.OwinContext.GetUserManager<UserManager<ApplicationUser>>();
@@ -87,7 +96,25 @@ namespace TXHRM.Web.App_Start
                     ClaimsIdentity identity = await userManager.CreateIdentityAsync(
                                                            user,
                                                            DefaultAuthenticationTypes.ExternalBearer);
-                    context.Validated(identity);
+                    string avatar = string.IsNullOrEmpty(user.Avatar) ? "" : user.Avatar;
+                    string email = string.IsNullOrEmpty(user.Email) ? "" : user.Email;
+                    identity.AddClaim(new Claim("fullName", user.FullName));
+                    identity.AddClaim(new Claim("avatar", avatar));
+                    identity.AddClaim(new Claim("email", email));
+                    identity.AddClaim(new Claim("username", user.UserName));
+                    //identity.AddClaim(new Claim("roles", JsonConvert.SerializeObject(roles)));
+                    //identity.AddClaim(new Claim("permissions", JsonConvert.SerializeObject(permissionViewModels)));
+                    var props = new AuthenticationProperties(new Dictionary<string, string>
+                    {
+                        {"fullName", user.FullName},
+                        {"avatar", avatar },
+                        {"email", email},
+                        {"username", user.UserName}
+                        //{"permissions",JsonConvert.SerializeObject(permissionViewModels) },
+                        //{"roles",JsonConvert.SerializeObject(roles) }
+
+                    });
+                    context.Validated(new AuthenticationTicket(identity, props));
                 }
                 else
                 {
