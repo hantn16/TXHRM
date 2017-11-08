@@ -19,11 +19,11 @@ namespace TXHRM.Data.Migrations
         {
             //  This method will be called after migrating to the latest version.
 
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new TXHRMDbContext()));
+            var manager = new UserManager<AppUser>(new UserStore<AppUser>(new TXHRMDbContext()));
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new TXHRMDbContext()));
 
-            var user = new ApplicationUser()
+            var user = new AppUser()
             {
                 UserName = "admin",
                 Email = "hantn16@gmail.com",

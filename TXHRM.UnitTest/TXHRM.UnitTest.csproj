@@ -88,10 +88,6 @@
       <Project>{314e19a5-4393-4796-8cb0-c4295be2126e}</Project>
       <Name>TXHRM.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TXHRM.Web\TXHRM.Web.csproj">
-      <Project>{627ec20f-8654-4806-995a-31dbd9ced7d4}</Project>
-      <Name>TXHRM.Web</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -92,6 +92,14 @@
     <Compile Include="Migrations\201710230625553_InheritAuditableClass.Designer.cs">
       <DependentUpon>201710230625553_InheritAuditableClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711080610496_CheckForChanges.cs" />
+    <Compile Include="Migrations\201711080610496_CheckForChanges.Designer.cs">
+      <DependentUpon>201711080610496_CheckForChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711080618052_RenameApplicationUserModel.cs" />
+    <Compile Include="Migrations\201711080618052_RenameApplicationUserModel.Designer.cs">
+      <DependentUpon>201711080618052_RenameApplicationUserModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DepartmentRepository.cs" />
@@ -150,6 +158,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710230625553_InheritAuditableClass.resx">
       <DependentUpon>201710230625553_InheritAuditableClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711080610496_CheckForChanges.resx">
+      <DependentUpon>201711080610496_CheckForChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711080618052_RenameApplicationUserModel.resx">
+      <DependentUpon>201711080618052_RenameApplicationUserModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

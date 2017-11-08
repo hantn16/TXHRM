@@ -25,7 +25,7 @@ namespace TXHRM.Web.App_Start
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
-            app.CreatePerOwinContext<UserManager<ApplicationUser>>(CreateManager);
+            app.CreatePerOwinContext<UserManager<AppUser>>(CreateManager);
             app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/oauth/token"),
@@ -69,8 +69,8 @@ namespace TXHRM.Web.App_Start
 
                 context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
 
-                UserManager<ApplicationUser> userManager = context.OwinContext.GetUserManager<UserManager<ApplicationUser>>();
-                ApplicationUser user;
+                UserManager<AppUser> userManager = context.OwinContext.GetUserManager<UserManager<AppUser>>();
+                AppUser user;
                 try
                 {
                     user = await userManager.FindAsync(context.UserName, context.Password);
@@ -99,10 +99,10 @@ namespace TXHRM.Web.App_Start
 
 
 
-        private static UserManager<ApplicationUser> CreateManager(IdentityFactoryOptions<UserManager<ApplicationUser>> options, IOwinContext context)
+        private static UserManager<AppUser> CreateManager(IdentityFactoryOptions<UserManager<AppUser>> options, IOwinContext context)
         {
-            var userStore = new UserStore<ApplicationUser>(context.Get<TXHRMDbContext>());
-            var owinManager = new UserManager<ApplicationUser>(userStore);
+            var userStore = new UserStore<AppUser>(context.Get<TXHRMDbContext>());
+            var owinManager = new UserManager<AppUser>(userStore);
             return owinManager;
         }
     }

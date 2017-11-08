@@ -55,7 +55,8 @@
   <ItemGroup>
     <Compile Include="Abstracts\Auditable.cs" />
     <Compile Include="Abstracts\IAuditable.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\AppRole.cs" />
+    <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Error.cs" />
