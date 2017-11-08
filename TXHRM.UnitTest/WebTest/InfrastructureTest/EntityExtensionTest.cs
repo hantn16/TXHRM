@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using TXHRM.Model.Models;
 using TXHRM.Web.Infrastructure.Extensions;
 using TXHRM.Web.Models;
+using TXHRM.Web.Models.Post;
 
 namespace TXHRM.UnitTest.WebTest.InfrastructureTest
 {

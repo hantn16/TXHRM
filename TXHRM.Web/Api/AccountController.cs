@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using TXHRM.Identity;
 using TXHRM.Web.App_Start;
 
 namespace TXHRM.Web.Api
@@ -14,24 +15,24 @@ namespace TXHRM.Web.Api
     [RoutePrefix("api/account")]
     public class AccountController : ApiController
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        private AppSignInManager _signInManager;
+        private AppUserManager _userManager;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(AppUserManager userManager, AppSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
 
-        public ApplicationSignInManager SignInManager
+        public AppSignInManager SignInManager
         {
             get
             {
-                return _signInManager ?? HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>();
+                return _signInManager ?? HttpContext.Current.GetOwinContext().Get<AppSignInManager>();
             }
             private set
             {
@@ -39,11 +40,11 @@ namespace TXHRM.Web.Api
             }
         }
 
-        public ApplicationUserManager UserManager
+        public AppUserManager UserManager
         {
             get
             {
-                return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return _userManager ?? HttpContext.Current.GetOwinContext().GetUserManager<AppUserManager>();
             }
             private set
             {

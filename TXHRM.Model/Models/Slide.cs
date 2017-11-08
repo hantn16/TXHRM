@@ -24,5 +24,6 @@ namespace TXHRM.Model.Models
         public string Url { get; set; }
 
         public int? DisplayOrder { get; set; }
+        public string Content { set; get; }
     }
 }

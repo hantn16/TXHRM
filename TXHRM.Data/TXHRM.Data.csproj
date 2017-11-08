@@ -31,10 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -100,15 +100,29 @@
     <Compile Include="Migrations\201711060428032_UpdateModel2.Designer.cs">
       <DependentUpon>201711060428032_UpdateModel2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711070653422_AddSomeTable.cs" />
+    <Compile Include="Migrations\201711070653422_AddSomeTable.Designer.cs">
+      <DependentUpon>201711070653422_AddSomeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711070734079_AddSomeTable2.cs" />
+    <Compile Include="Migrations\201711070734079_AddSomeTable2.Designer.cs">
+      <DependentUpon>201711070734079_AddSomeTable2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711080600249_AddSomeTable3.cs" />
+    <Compile Include="Migrations\201711080600249_AddSomeTable3.Designer.cs">
+      <DependentUpon>201711080600249_AddSomeTable3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DepartmentRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
+    <Compile Include="Repositories\FunctionRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
     <Compile Include="Repositories\PageRepository.cs" />
+    <Compile Include="Repositories\PermissionRepository.cs" />
     <Compile Include="Repositories\PositionRepository.cs" />
     <Compile Include="Repositories\PostCategoryRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
@@ -164,6 +178,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711060428032_UpdateModel2.resx">
       <DependentUpon>201711060428032_UpdateModel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711070653422_AddSomeTable.resx">
+      <DependentUpon>201711070653422_AddSomeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711070734079_AddSomeTable2.resx">
+      <DependentUpon>201711070734079_AddSomeTable2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711080600249_AddSomeTable3.resx">
+      <DependentUpon>201711080600249_AddSomeTable3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

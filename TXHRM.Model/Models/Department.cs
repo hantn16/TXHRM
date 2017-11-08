@@ -25,18 +25,18 @@ namespace TXHRM.Model.Models
         public string Alias { get; set; }
         
         public int ParentID { get; set; }
-        public long LeaderID { get; set; }
+        public int LeaderID { get; set; }
 
         //Navigation Properties
         //[InverseProperty("Department")]
         public virtual ICollection<Employee> Employees { get; set; }
-
+        [InverseProperty("Department")]
         public virtual IEnumerable<WorkingProcess> WorkingProcesses { get; set; }
         [ForeignKey("ParentID")]
         public virtual Department ParentDepartment { get; set; }
 
         [InverseProperty("ParentDepartment")]
-        public virtual IEnumerable<Department> ChildDepartments { get; set; }
+        public virtual ICollection<Department> ChildDepartments { get; set; }
 
         [ForeignKey("LeaderID")]
         public virtual Employee Leader { get; set; }

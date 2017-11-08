@@ -42,10 +42,10 @@
       <HintPath>..\packages\Castle.Core.4.2.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.1.18\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
@@ -79,6 +79,10 @@
     <ProjectReference Include="..\TXHRM.Data\TXHRM.Data.csproj">
       <Project>{6f67f8a8-2677-43f0-9696-a55be68a9df0}</Project>
       <Name>TXHRM.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TXHRM.Identity\TXHRM.Identity.csproj">
+      <Project>{a390f77a-0f78-4d87-94b6-8e1a80121f15}</Project>
+      <Name>TXHRM.Identity</Name>
     </ProjectReference>
     <ProjectReference Include="..\TXHRM.Model\TXHRM.Model.csproj">
       <Project>{828a6f81-3771-4654-ba0e-c6959547a179}</Project>

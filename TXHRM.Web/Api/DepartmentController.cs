@@ -11,6 +11,7 @@ using TXHRM.Web.Infrastructure.Core;
 using TXHRM.Web.Models;
 using System.Web.Script.Serialization;
 using TXHRM.Web.Infrastructure.Extensions;
+using TXHRM.Web.Models.Employee;
 
 namespace TXHRM.Web.Api
 {

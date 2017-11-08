@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security;
@@ -12,7 +13,9 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using TXHRM.Data;
+using TXHRM.Identity;
 using TXHRM.Model.Models;
+using TXHRM.Web.Providers;
 
 [assembly: OwinStartup(typeof(TXHRM.Web.App_Start.Startup))]
 
@@ -25,111 +28,63 @@ namespace TXHRM.Web.App_Start
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(TXHRMDbContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
-            //app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            //app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
-            app.CreatePerOwinContext<UserManager<ApplicationUser>>(CreateManager);
+
+            app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
+            app.CreatePerOwinContext<AppSignInManager>(AppSignInManager.Create);
+            app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
+            app.CreatePerOwinContext<AppRoleManager>(AppRoleManager.Create);
+            app.CreatePerOwinContext<UserManager<AppUser>>(CreateManager);
+
             //Allow Cross origin for API
             app.UseCors(CorsOptions.AllowAll);
+
+
+
             app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
             {
-                TokenEndpointPath = new PathString("/oauth/token"),
+                TokenEndpointPath = new PathString("/api/oauth/token"),
                 Provider = new AuthorizationServerProvider(),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
                 AllowInsecureHttp = true
             });
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-            //app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
+            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
-
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
-
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
-
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
-        }
-        public class AuthorizationServerProvider : OAuthAuthorizationServerProvider
-        {
-            public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
+            // Branch the pipeline here for requests that start with "/signalr"
+            app.Map("/signalr", map =>
             {
-                context.Validated();
-            }
-            public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
-            {
-                var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin");
+                // Setup the CORS middleware to run before SignalR.
+                // By default this will allow all origins. You can 
+                // configure the set of origins and/or http verbs by
+                // providing a cors options with a different policy.
+                map.UseCors(CorsOptions.AllowAll);
 
-                if (allowedOrigin == null) allowedOrigin = "*";
-                if (context.OwinContext.Response.Headers.ContainsKey("Access-Control-Allow-Origin"))
+                map.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions()
                 {
-                    context.OwinContext.Response.Headers.Remove("Access-Control-Allow-Origin");          
-                }
-                context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
+                    Provider = new QueryStringOAuthBearerProvider()
+                });
 
-                UserManager<ApplicationUser> userManager = context.OwinContext.GetUserManager<UserManager<ApplicationUser>>();
-                ApplicationUser user;
-                try
+                var hubConfiguration = new HubConfiguration
                 {
-                    user = await userManager.FindAsync(context.UserName, context.Password);
-                }
-                catch
-                {
-                    // Could not retrieve the user due to error.
-                    context.SetError("server_error");
-                    context.Rejected();
-                    return;
-                }
-                if (user != null)
-                {
-                    ClaimsIdentity identity = await userManager.CreateIdentityAsync(
-                                                           user,
-                                                           DefaultAuthenticationTypes.ExternalBearer);
-                    string avatar = string.IsNullOrEmpty(user.Avatar) ? "" : user.Avatar;
-                    string email = string.IsNullOrEmpty(user.Email) ? "" : user.Email;
-                    identity.AddClaim(new Claim("fullName", user.FullName));
-                    identity.AddClaim(new Claim("avatar", avatar));
-                    identity.AddClaim(new Claim("email", email));
-                    identity.AddClaim(new Claim("username", user.UserName));
-                    //identity.AddClaim(new Claim("roles", JsonConvert.SerializeObject(roles)));
-                    //identity.AddClaim(new Claim("permissions", JsonConvert.SerializeObject(permissionViewModels)));
-                    var props = new AuthenticationProperties(new Dictionary<string, string>
-                    {
-                        {"fullName", user.FullName},
-                        {"avatar", avatar },
-                        {"email", email},
-                        {"username", user.UserName}
-                        //{"permissions",JsonConvert.SerializeObject(permissionViewModels) },
-                        //{"roles",JsonConvert.SerializeObject(roles) }
+                    // You can enable JSONP by uncommenting line below.
+                    // JSONP requests are insecure but some older browsers (and some
+                    // versions of IE) require JSONP to work cross domain
+                    EnableJSONP = true,
+                    EnableDetailedErrors = true
+                };
+                // Run the SignalR pipeline. We're not using MapSignalR
+                // since this branch already runs under the "/signalr"
+                // path.
+                map.RunSignalR(hubConfiguration);
+            });
 
-                    });
-                    context.Validated(new AuthenticationTicket(identity, props));
-                }
-                else
-                {
-                    context.SetError("invalid_grant", "Tài khoản hoặc mật khẩu không đúng.'");
-                    context.Rejected();
-                }
-            }
         }
 
-
-
-        private static UserManager<ApplicationUser> CreateManager(IdentityFactoryOptions<UserManager<ApplicationUser>> options, IOwinContext context)
+        private static UserManager<AppUser> CreateManager(IdentityFactoryOptions<UserManager<AppUser>> options, IOwinContext context)
         {
-            var userStore = new UserStore<ApplicationUser>(context.Get<TXHRMDbContext>());
-            var owinManager = new UserManager<ApplicationUser>(userStore);
+            var userStore = new UserStore<AppUser>(context.Get<TXHRMDbContext>());
+            var owinManager = new UserManager<AppUser>(userStore);
+
             return owinManager;
         }
     }

@@ -11,7 +11,7 @@ namespace TXHRM.Model.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long ID { get; set; }
 
-        public long EmployeeID { get; set; }
+        public int EmployeeID { get; set; }
 
         public int DepartmentID { get; set; }
 
@@ -21,7 +21,7 @@ namespace TXHRM.Model.Models
         public DateTime StartDate { get; set; }
 
         [Required]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         //Navigation Properties
         [ForeignKey("EmployeeID")]

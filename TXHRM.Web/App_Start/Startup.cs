@@ -16,6 +16,8 @@ using TXHRM.Model.Models;
 using Microsoft.AspNet.Identity;
 using System.Web;
 using Microsoft.Owin.Security.DataProtection;
+using Microsoft.AspNet.Identity.EntityFramework;
+using TXHRM.Identity;
 
 [assembly: OwinStartup(typeof(TXHRM.Web.App_Start.Startup))]
 
@@ -32,6 +34,7 @@ namespace TXHRM.Web.App_Start
         {
             var builder = new ContainerBuilder();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
+
             //Register your Web API controllers
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
@@ -39,13 +42,16 @@ namespace TXHRM.Web.App_Start
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
             builder.RegisterType<TXHRMDbContext>().AsSelf().InstancePerRequest();
 
+            builder.RegisterType<RoleStore<AppRole>>().As<IRoleStore<AppRole, string>>();
             //Asp.net Identity
-            builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
-            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
-            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<AppUserStore>().As<IUserStore<AppUser>>().InstancePerRequest();
+            builder.RegisterType<AppUserManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<AppSignInManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<AppRoleManager>().AsSelf().InstancePerRequest();
+
             builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
             builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
-            
+
             //Repositories
             builder.RegisterAssemblyTypes(typeof(PostRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))

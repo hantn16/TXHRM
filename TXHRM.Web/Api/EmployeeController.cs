@@ -11,6 +11,7 @@ using TXHRM.Service;
 using TXHRM.Web.Infrastructure.Core;
 using TXHRM.Web.Infrastructure.Extensions;
 using TXHRM.Web.Models;
+using TXHRM.Web.Models.Employee;
 
 namespace TXHRM.Web.Api
 {

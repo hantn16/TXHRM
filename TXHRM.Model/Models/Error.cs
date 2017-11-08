@@ -15,6 +15,6 @@ namespace TXHRM.Model.Models
 
         public string StackTrace { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
     }
 }

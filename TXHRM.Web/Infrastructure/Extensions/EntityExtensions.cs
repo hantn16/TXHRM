@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Web;
 using TXHRM.Model.Models;
 using TXHRM.Web.Models;
+using TXHRM.Web.Models.Post;
 
 namespace TXHRM.Web.Infrastructure.Extensions
 {
