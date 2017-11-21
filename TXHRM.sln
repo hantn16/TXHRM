@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TXHRM.Common", "TXHRM.Commo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TXHRM.Service", "TXHRM.Service\TXHRM.Service.csproj", "{314E19A5-4393-4796-8CB0-C4295BE2126E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TXHRM.WebAPI", "TXHRM.WebAPI\TXHRM.WebAPI.csproj", "{3547ACB8-B6B5-44E1-BDA0-644A1F72931E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{314E19A5-4393-4796-8CB0-C4295BE2126E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{314E19A5-4393-4796-8CB0-C4295BE2126E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{314E19A5-4393-4796-8CB0-C4295BE2126E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3547ACB8-B6B5-44E1-BDA0-644A1F72931E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3547ACB8-B6B5-44E1-BDA0-644A1F72931E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3547ACB8-B6B5-44E1-BDA0-644A1F72931E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3547ACB8-B6B5-44E1-BDA0-644A1F72931E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -66,9 +66,9 @@ namespace TXHRM.Data.Migrations
                         EndDate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Department", t => t.DepartmentID, cascadeDelete: true)
-                .ForeignKey("dbo.Employee", t => t.EmployeeID, cascadeDelete: true)
-                .ForeignKey("dbo.Position", t => t.PositionID, cascadeDelete: true)
+                .ForeignKey("dbo.Department", t => t.DepartmentID, cascadeDelete: false)
+                .ForeignKey("dbo.Employee", t => t.EmployeeID, cascadeDelete: false)
+                .ForeignKey("dbo.Position", t => t.PositionID, cascadeDelete: false)
                 .Index(t => t.EmployeeID)
                 .Index(t => t.DepartmentID)
                 .Index(t => t.PositionID);

@@ -35,15 +35,20 @@ namespace TXHRM.Data
         public DbSet<Error> Errors { get; set; }
 
         public DbSet<AppRole> AppRoles { get; set; }
+        public DbSet<IdentityUserRole> AppUserRoles { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
+        public DbSet<Function> Functions { get; set; }
 
         public static TXHRMDbContext Create()
         {
             return new TXHRMDbContext();
         }
-        protected override void OnModelCreating(DbModelBuilder dbModelBuilder)
+        protected override void OnModelCreating(DbModelBuilder builder)
         {
-            dbModelBuilder.Entity<IdentityUserRole>().HasKey(c => new { c.UserId, c.RoleId });
-            dbModelBuilder.Entity<IdentityUserLogin>().HasKey(c => c.UserId);
+            builder.Entity<IdentityRole>().HasKey<string>(r => r.Id).ToTable("AppRole");
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId }).ToTable("AppUserRole");
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId).ToTable("AppUserLogin");
+            builder.Entity<IdentityUserClaim>().HasKey(i => i.UserId).ToTable("AppUserClaim");
         }
     }
 }

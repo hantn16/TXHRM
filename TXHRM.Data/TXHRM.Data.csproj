@@ -64,41 +64,9 @@
     <Compile Include="Migrations\201710041613135_InitialDb.Designer.cs">
       <DependentUpon>201710041613135_InitialDb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710060956007_1stEdit.cs" />
-    <Compile Include="Migrations\201710060956007_1stEdit.Designer.cs">
-      <DependentUpon>201710060956007_1stEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710061356575_2ndEdit.cs" />
-    <Compile Include="Migrations\201710061356575_2ndEdit.Designer.cs">
-      <DependentUpon>201710061356575_2ndEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710061404104_3rdEdit.cs" />
-    <Compile Include="Migrations\201710061404104_3rdEdit.Designer.cs">
-      <DependentUpon>201710061404104_3rdEdit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710061548013_AddErrorTable.cs" />
-    <Compile Include="Migrations\201710061548013_AddErrorTable.Designer.cs">
-      <DependentUpon>201710061548013_AddErrorTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710081242136_Intergrate-ASPNetIdentity.cs" />
-    <Compile Include="Migrations\201710081242136_Intergrate-ASPNetIdentity.Designer.cs">
-      <DependentUpon>201710081242136_Intergrate-ASPNetIdentity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710120413327_SetUniqueAttribute.cs" />
-    <Compile Include="Migrations\201710120413327_SetUniqueAttribute.Designer.cs">
-      <DependentUpon>201710120413327_SetUniqueAttribute.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710230625553_InheritAuditableClass.cs" />
-    <Compile Include="Migrations\201710230625553_InheritAuditableClass.Designer.cs">
-      <DependentUpon>201710230625553_InheritAuditableClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711080610496_CheckForChanges.cs" />
-    <Compile Include="Migrations\201711080610496_CheckForChanges.Designer.cs">
-      <DependentUpon>201711080610496_CheckForChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711080618052_RenameApplicationUserModel.cs" />
-    <Compile Include="Migrations\201711080618052_RenameApplicationUserModel.Designer.cs">
-      <DependentUpon>201711080618052_RenameApplicationUserModel.cs</DependentUpon>
+    <Compile Include="Migrations\201711210509136_AddSomeAuthTable.cs" />
+    <Compile Include="Migrations\201711210509136_AddSomeAuthTable.Designer.cs">
+      <DependentUpon>201711210509136_AddSomeAuthTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -133,37 +101,17 @@
       <Project>{828a6f81-3771-4654-ba0e-c6959547a179}</Project>
       <Name>TXHRM.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TXHRM.WebAPI\TXHRM.WebAPI.csproj">
+      <Project>{3547ACB8-B6B5-44E1-BDA0-644A1F72931E}</Project>
+      <Name>TXHRM.WebAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201710041613135_InitialDb.resx">
       <DependentUpon>201710041613135_InitialDb.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710060956007_1stEdit.resx">
-      <DependentUpon>201710060956007_1stEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710061356575_2ndEdit.resx">
-      <DependentUpon>201710061356575_2ndEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710061404104_3rdEdit.resx">
-      <DependentUpon>201710061404104_3rdEdit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710061548013_AddErrorTable.resx">
-      <DependentUpon>201710061548013_AddErrorTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710081242136_Intergrate-ASPNetIdentity.resx">
-      <DependentUpon>201710081242136_Intergrate-ASPNetIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710120413327_SetUniqueAttribute.resx">
-      <DependentUpon>201710120413327_SetUniqueAttribute.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710230625553_InheritAuditableClass.resx">
-      <DependentUpon>201710230625553_InheritAuditableClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711080610496_CheckForChanges.resx">
-      <DependentUpon>201711080610496_CheckForChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711080618052_RenameApplicationUserModel.resx">
-      <DependentUpon>201711080618052_RenameApplicationUserModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711210509136_AddSomeAuthTable.resx">
+      <DependentUpon>201711210509136_AddSomeAuthTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
