@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TXHRM.UnitTest", "TXHRM.UnitTest\TXHRM.UnitTest.csproj", "{EAE92E93-58B3-42A7-BDEC-553B80A0B221}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TXHRM.Service", "TXHRM.Service\TXHRM.Service.csproj", "{314E19A5-4393-4796-8CB0-C4295BE2126E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TXHRM.WebAPI", "TXHRM.WebAPI\TXHRM.WebAPI.csproj", "{3547ACB8-B6B5-44E1-BDA0-644A1F72931E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TXHRM.Identity.cs", "TXHRM.Identity.cs\TXHRM.Identity.cs.csproj", "{5158135D-BD68-4253-B14A-8D80E4E2502D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{3547ACB8-B6B5-44E1-BDA0-644A1F72931E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3547ACB8-B6B5-44E1-BDA0-644A1F72931E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3547ACB8-B6B5-44E1-BDA0-644A1F72931E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5158135D-BD68-4253-B14A-8D80E4E2502D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5158135D-BD68-4253-B14A-8D80E4E2502D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5158135D-BD68-4253-B14A-8D80E4E2502D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5158135D-BD68-4253-B14A-8D80E4E2502D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

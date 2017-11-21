@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="EmployeeService.cs" />
     <Compile Include="ErrorService.cs" />
+    <Compile Include="PermissionService.cs" />
     <Compile Include="PostCategoryService.cs" />
     <Compile Include="PostService.cs" />
     <Compile Include="PostTagService.cs" />
@@ -61,6 +62,9 @@
       <Project>{828a6f81-3771-4654-ba0e-c6959547a179}</Project>
       <Name>TXHRM.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
