@@ -336,10 +336,6 @@
       <Project>{6f67f8a8-2677-43f0-9696-a55be68a9df0}</Project>
       <Name>TXHRM.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TXHRM.Identity\TXHRM.Identity.csproj">
-      <Project>{A390F77A-0F78-4D87-94B6-8E1A80121F15}</Project>
-      <Name>TXHRM.Identity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TXHRM.Model\TXHRM.Model.csproj">
       <Project>{828a6f81-3771-4654-ba0e-c6959547a179}</Project>
       <Name>TXHRM.Model</Name>
