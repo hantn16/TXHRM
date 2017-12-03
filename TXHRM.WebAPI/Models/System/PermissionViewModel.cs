@@ -7,7 +7,7 @@ namespace TXHRM.WebAPI.Models
 {
     public class PermissionViewModel
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         public string RoleId { get; set; }
 

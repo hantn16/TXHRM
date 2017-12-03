@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using TXHRM.Data;
 using TXHRM.Model.Models;
 
-namespace TXHRM.Identity.cs
+namespace TXHRM.Identity
 {
     public class AppUserManager : UserManager<AppUser>
     {
@@ -33,10 +33,10 @@ namespace TXHRM.Identity.cs
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
+                RequireNonLetterOrDigit = false,
                 RequireDigit = true,
                 RequireLowercase = true,
-                RequireUppercase = true,
+                RequireUppercase = false,
             };
 
             // Configure user lockout defaults

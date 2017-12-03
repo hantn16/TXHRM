@@ -10,7 +10,7 @@ using TXHRM.Model.Models;
 
 namespace TXHRM.Data
 {
-    public class TXHRMDbContext : IdentityDbContext<AppUser>
+    public class TXHRMDbContext : IdentityDbContext<AppUser,AppRole,string,IdentityUserLogin,IdentityUserRole,IdentityUserClaim>
     {
         public TXHRMDbContext() : base("TXHRMConnection")
         {
@@ -34,7 +34,6 @@ namespace TXHRM.Data
         public DbSet<WorkingProcess> WorkingProcesses { get; set; }
         public DbSet<Error> Errors { get; set; }
 
-        public DbSet<AppRole> AppRoles { get; set; }
         public DbSet<IdentityUserRole> AppUserRoles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Function> Functions { get; set; }

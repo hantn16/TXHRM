@@ -8,7 +8,8 @@ namespace TXHRM.WebAPI.Models
 {
     public class PostCategoryViewModel
     {
-        public int ID { get; set; }
+
+        public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -20,7 +21,7 @@ namespace TXHRM.WebAPI.Models
 
         public int? DisplayOrder { get; set; }
 
-        public int? ParentID { get; set; }
+        public int? ParentId { get; set; }
 
         public bool? HomeFlag { get; set; }
 
@@ -32,7 +33,7 @@ namespace TXHRM.WebAPI.Models
 
         public virtual IEnumerable<PostCategoryViewModel> ChildCategories { get; set; }
 
-        [Required]
+
         public bool Status { get; set; }
 
         public DateTime CreatedDate { get; set; }

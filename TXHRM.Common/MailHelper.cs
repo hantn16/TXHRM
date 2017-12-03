@@ -44,9 +44,8 @@ namespace TXHRM.Common
 
                 return true;
             }
-            catch (SmtpException smex)
+            catch (SmtpException)
             {
-
                 return false;
             }
         }

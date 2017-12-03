@@ -13,7 +13,7 @@ namespace TXHRM.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long ID { get; set; }
+        public long Id { get; set; }
 
         [MaxLength(50)]
         public string Name { get; set; }
@@ -33,22 +33,22 @@ namespace TXHRM.Model.Models
         [DataType(DataType.Date)]
         public DateTime JoinDate { get; set; }
 
-        public int DepartmentID { get; set; }
+        public int DepartmentId { get; set; }
 
-        public long LeaderID { get; set; }
+        public long LeaderId { get; set; }
 
-        public int PositionID { get; set; }
+        public int PositionId { get; set; }
 
         //Navigation Properties
         public virtual IEnumerable<WorkingProcess> WorkingProcesses { get; set; }
 
-        [ForeignKey("PositionID")]
+        [ForeignKey("PositionId")]
         public virtual Position Position { get; set; }
 
-        [ForeignKey("LeaderID")]
+        [ForeignKey("LeaderId")]
         public virtual Employee Leader { get; set; }
 
-        [ForeignKey("DepartmentID")]
+        [ForeignKey("DepartmentId")]
         public virtual Department Department { get; set; }
     }
 }

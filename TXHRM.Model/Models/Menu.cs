@@ -14,7 +14,7 @@ namespace TXHRM.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -26,7 +26,7 @@ namespace TXHRM.Model.Models
 
         [Required]
         [ForeignKey("MenuGroup")]
-        public int GroupID { get; set; }
+        public int GroupId { get; set; }
 
         public string Target { get; set; }
 

@@ -44,8 +44,8 @@ namespace TXHRM.Service
                 foreach (Tag tag in listTag)
                 {
                     var postTag = new PostTag() {
-                        TagID = tag.ID,
-                        PostID = addedPost.ID
+                        TagId = tag.Id,
+                        PostId = addedPost.Id
                     };
                     _postTagRepository.Add(postTag);
                 }
@@ -92,7 +92,7 @@ namespace TXHRM.Service
         public void Update(Post post)
         {
             _postRepository.Update(post);
-            _postTagRepository.DeleteMulti(c => c.PostID == post.ID);
+            _postTagRepository.DeleteMulti(c => c.PostId == post.Id);
             if (!String.IsNullOrEmpty(post.Tags))
             {
                 var listTag = new TagService(_tagRepository, _unitOfWork).Add(post.Tags);               
@@ -100,8 +100,8 @@ namespace TXHRM.Service
                 {
                     var postTag = new PostTag()
                     {
-                        TagID = tag.ID,
-                        PostID = post.ID
+                        TagId = tag.Id,
+                        PostId = post.Id
                     };
                     _postTagRepository.Add(postTag);
                 }

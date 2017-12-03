@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TXHRM.Service", "TXHRM.Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TXHRM.WebAPI", "TXHRM.WebAPI\TXHRM.WebAPI.csproj", "{3547ACB8-B6B5-44E1-BDA0-644A1F72931E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TXHRM.Identity.cs", "TXHRM.Identity.cs\TXHRM.Identity.cs.csproj", "{5158135D-BD68-4253-B14A-8D80E4E2502D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TXHRM.Identity", "TXHRM.Identity.cs\TXHRM.Identity.csproj", "{5158135D-BD68-4253-B14A-8D80E4E2502D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using Microsoft.AspNet.Identity.Owin;
-using TXHRM.Identity.cs;
+using TXHRM.Identity;
 using TXHRM.Model.Models;
 using TXHRM.Service;
 

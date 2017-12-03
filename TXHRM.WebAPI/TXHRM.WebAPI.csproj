@@ -59,10 +59,10 @@
       <HintPath>..\packages\AutoMapper.6.2.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -103,14 +103,18 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
     </Reference>
@@ -204,6 +208,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
@@ -234,8 +239,14 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AppRoleController.cs" />
+    <Compile Include="Controllers\AppUserController.cs" />
+    <Compile Include="Controllers\FunctionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\PermissionController.cs" />
+    <Compile Include="Controllers\PostCategoryController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -244,9 +255,10 @@
     <Compile Include="Infrastructure\Core\ServiceFactory.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtension.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
+    <Compile Include="Models\DataContracts\SavePermissionRequest.cs" />
+    <Compile Include="Models\Post\PostCategoryViewModel.cs" />
     <Compile Include="Models\System\AppRoleViewModel.cs" />
     <Compile Include="Models\System\AppUserViewModel.cs" />
-    <Compile Include="Models\Post\PostCategoryViewModel.cs" />
     <Compile Include="Models\Post\PostTagViewModel.cs" />
     <Compile Include="Models\Post\PostViewModel.cs" />
     <Compile Include="Models\System\FunctionViewModel.cs" />
@@ -331,9 +343,13 @@
       <Project>{3893b118-2e31-469e-989a-f7d429aefcd5}</Project>
       <Name>TXHRM.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TXHRM.Identity.cs\TXHRM.Identity.cs.csproj">
+    <ProjectReference Include="..\TXHRM.Data\TXHRM.Data.csproj">
+      <Project>{6F67F8A8-2677-43F0-9696-A55BE68A9DF0}</Project>
+      <Name>TXHRM.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TXHRM.Identity.cs\TXHRM.Identity.csproj">
       <Project>{5158135D-BD68-4253-B14A-8D80E4E2502D}</Project>
-      <Name>TXHRM.Identity.cs</Name>
+      <Name>TXHRM.Identity</Name>
     </ProjectReference>
     <ProjectReference Include="..\TXHRM.Model\TXHRM.Model.csproj">
       <Project>{828A6F81-3771-4654-BA0E-C6959547A179}</Project>

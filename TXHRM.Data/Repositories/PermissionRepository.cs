@@ -29,7 +29,7 @@ namespace TXHRM.Data.Repositories
                 //            join u in DbContext.Users on ur.UserId equals u.Id
                 //            where u.Id == userId
                 //            select p;
-                List<Permission> query = DbContext.Permissions.Join(DbContext.AppRoles, per => per.RoleId, role => role.Id, (per, role) => new { per, role.Id })
+                List<Permission> query = DbContext.Permissions.Join(DbContext.Roles, per => per.RoleId, role => role.Id, (per, role) => new { per, role.Id })
                     .Join(DbContext.AppUserRoles, e => e.Id, userRole => userRole.RoleId, (e, userRole) => new { e.per, userRole.UserId }).Where(g => g.UserId == userId).Select(c => c.per).ToList();
                 return query;
             }

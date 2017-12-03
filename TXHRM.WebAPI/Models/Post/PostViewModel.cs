@@ -7,7 +7,7 @@ namespace TXHRM.WebAPI.Models
 {
     public class PostViewModel
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 
@@ -29,6 +29,8 @@ namespace TXHRM.WebAPI.Models
 
         public int ViewCount { get; set; }
 
+
+
         public bool Status { get; set; }
 
         public DateTime CreatedDate { get; set; }
@@ -42,9 +44,11 @@ namespace TXHRM.WebAPI.Models
         public string MetaKeyword { get; set; }
 
         public string MetaDescription { get; set; }
+
+
         //Thuộc tính Navigation
         public virtual PostCategoryViewModel PostCategory { get; set; }
 
-        public IEnumerable<PostTagViewModel> PostTags { get; set; }
+        public virtual IEnumerable<PostTagViewModel> PostTags { get; set; }
     }
 }

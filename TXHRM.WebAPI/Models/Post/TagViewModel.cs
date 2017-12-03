@@ -7,7 +7,7 @@ namespace TXHRM.WebAPI.Models
 {
     public class TagViewModel
     {
-        public string ID { get; set; }
+        public string Id { get; set; }
 
         public string Name { get; set; }
 

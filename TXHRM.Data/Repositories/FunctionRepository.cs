@@ -24,14 +24,14 @@ namespace TXHRM.Data.Repositories
             try
             {
                 var query = (from f in DbContext.Functions
-                             join p in DbContext.Permissions on f.ID equals p.FunctionId
-                             join r in DbContext.AppRoles on p.RoleId equals r.Id
+                             join p in DbContext.Permissions on f.Id equals p.FunctionId
+                             join r in DbContext.Roles on p.RoleId equals r.Id
                              join ur in DbContext.AppUserRoles on r.Id equals ur.RoleId
                              join u in DbContext.Users on ur.UserId equals u.Id
                              where u.Id == userId && (p.CanRead == true)
                              select f);
                 var parentIds = query.Select(x => x.ParentId).Distinct();
-                query = query.Union(DbContext.Functions.Where(f => parentIds.Contains(f.ID)));
+                query = query.Union(DbContext.Functions.Where(f => parentIds.Contains(f.Id)));
 
                 return query.ToList();
             }

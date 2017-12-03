@@ -14,17 +14,17 @@ namespace TXHRM.Model.Models
         [Key]
         [Column(TypeName = "varchar",Order =1)]
         [MaxLength(50)]
-        public string TagID { get; set; }
+        public string TagId { get; set; }
 
         [Key]
         [Column(Order = 2)]
-        public int PostID { get; set; }
+        public int PostId { get; set; }
 
         //Thuộc tính navigation
-        [ForeignKey("PostID")]
+        [ForeignKey("PostId")]
         public virtual Post Post { get; set; }
 
-        [ForeignKey("TagID")]
+        [ForeignKey("TagId")]
         public virtual Tag Tag { get; set; }
     }
 }

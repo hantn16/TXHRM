@@ -27,9 +27,9 @@ namespace TXHRM.UnitTest.ServiceTest
             this._mockUnitOfWork = new Mock<IUnitOfWork>();
             this._mockService = new PostCategoryService(_mockRepository.Object, _mockUnitOfWork.Object);
             this._listCategory = new List<PostCategory>() {
-                new PostCategory(){ID = 1,Name = "DM1",Status = true},
-                new PostCategory(){ID = 2,Name = "DM2",Status = true},
-                new PostCategory(){ID = 3,Name = "DM3",Status = true}
+                new PostCategory(){Id = 1,Name = "DM1",Status = true},
+                new PostCategory(){Id = 2,Name = "DM2",Status = true},
+                new PostCategory(){Id = 3,Name = "DM3",Status = true}
             };
         }
 
@@ -51,10 +51,10 @@ namespace TXHRM.UnitTest.ServiceTest
         public void PostCategory_Service_Add()
         {
             PostCategory postCategory = new PostCategory() { Name = "Test", Alias = "test", Status = true };
-            _mockRepository.Setup(m => m.Add(postCategory)).Returns((PostCategory p) => { p.ID = 1; return p; });
+            _mockRepository.Setup(m => m.Add(postCategory)).Returns((PostCategory p) => { p.Id = 1; return p; });
             var result = _mockService.Add(postCategory);
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.ID);
+            Assert.AreEqual(1, result.Id);
         }
     }
 }

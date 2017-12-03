@@ -47,7 +47,7 @@ namespace TXHRM.Service
                 string tagID = StringHelper.ToUnsignString(item);
                 Tag myTag = new Tag()
                 {
-                    ID = tagID,Name = item,Type = CommonConstants.PostTagType
+                    Id = tagID,Name = item,Type = CommonConstants.PostTagType
                 };
                 Tag tag = _tagRepository.GetSingleById(tagID);
                 if (tag==null)
@@ -79,7 +79,7 @@ namespace TXHRM.Service
 
         public IEnumerable<Tag> GetAll(string keyWord)
         {
-            return _tagRepository.GetMulti(c => c.Name.Contains(keyWord) || c.ID.Contains(keyWord), new string[] { "TagCategory" });
+            return _tagRepository.GetMulti(c => c.Name.Contains(keyWord) || c.Id.Contains(keyWord), new string[] { "TagCategory" });
         }
 
         public IEnumerable<Tag> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)

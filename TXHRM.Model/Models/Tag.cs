@@ -10,7 +10,7 @@ namespace TXHRM.Model.Models
         [Key]
         [Column(TypeName = "varchar")]
         [MaxLength(50)]
-        public string ID { get; set; }
+        public string Id { get; set; }
 
         [Required]
         [MaxLength(50)]

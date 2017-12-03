@@ -13,7 +13,7 @@ namespace TXHRM.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
 
         [MaxLength(512)]
@@ -52,6 +52,6 @@ namespace TXHRM.Model.Models
         //Thuộc tính Navigation
         public virtual PostCategory PostCategory { get; set; }
 
-        public IEnumerable<PostTag> PostTags { get; set; }
+        public virtual IEnumerable<PostTag> PostTags { get; set; }
     }
 }

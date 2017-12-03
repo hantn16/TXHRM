@@ -13,7 +13,7 @@ namespace TXHRM.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(256)]

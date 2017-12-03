@@ -10,9 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using TXHRM.Model.Models;
 
-namespace TXHRM.Identity.cs
+namespace TXHRM.Identity
 {
-    class AppSignInManager : SignInManager<AppUser, string>
+    public class AppSignInManager : SignInManager<AppUser, string>
     {
         public AppSignInManager(AppUserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)

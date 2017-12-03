@@ -14,7 +14,7 @@ namespace TXHRM.Model.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(256)]
@@ -31,7 +31,7 @@ namespace TXHRM.Model.Models
 
         public int? DisplayOrder { get; set; }
 
-        public int? ParentID { get; set; }
+        public int? ParentId { get; set; }
 
         public bool? HomeFlag { get; set; }
 
@@ -40,9 +40,10 @@ namespace TXHRM.Model.Models
         //Thuộc tính navigation
         public virtual IEnumerable<Post> Posts { get; set; }
 
-        [ForeignKey("ParentID")]
+        [ForeignKey("ParentId")]
         public virtual PostCategory ParentCategory { get; set; }
 
+        [InverseProperty("ParentCategory")]
         public virtual IEnumerable<PostCategory> ChildCategories { get; set; }
     }
 }

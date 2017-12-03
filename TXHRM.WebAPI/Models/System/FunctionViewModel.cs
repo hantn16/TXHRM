@@ -8,7 +8,7 @@ namespace TXHRM.WebAPI.Models
 {
     public class FunctionViewModel
     {
-        public string ID { set; get; }
+        public string Id { set; get; }
 
         [Required]
         [MaxLength(50)]
@@ -24,7 +24,7 @@ namespace TXHRM.WebAPI.Models
 
         public FunctionViewModel Parent { set; get; }
 
-        public ICollection<FunctionViewModel> ChildFunctions { set; get; }
+        public IEnumerable<FunctionViewModel> ChildFunctions { set; get; }
 
         public bool Status { set; get; }
 

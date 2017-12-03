@@ -14,14 +14,17 @@ namespace TXHRM.WebAPI.Mappings
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<Post, PostViewModel>();
-                cfg.CreateMap<PostCategory, PostCategoryViewModel>();
-                cfg.CreateMap<Tag, TagViewModel>();
-                cfg.CreateMap<PostTag, PostTagViewModel>();
-                cfg.CreateMap<AppRole, AppRoleViewModel>();
-                cfg.CreateMap<AppUser, AppUserViewModel>();
-                cfg.CreateMap<Function, FunctionViewModel>();
-                cfg.CreateMap<Permission, PermissionViewModel>();
+                cfg.CreateMap<PostCategory, PostCategoryViewModel>().PreserveReferences();
+                cfg.CreateMap<Post, PostViewModel>().PreserveReferences();
+                cfg.CreateMap<PostViewModel, PostViewModel>().ReverseMap().PreserveReferences();
+                cfg.CreateMap<PostTag, PostTagViewModel>().PreserveReferences();
+                cfg.CreateMap<Tag, TagViewModel>().PreserveReferences();
+                cfg.CreateMap<AppRole, AppRoleViewModel>().PreserveReferences();
+                cfg.CreateMap<AppRole, AppRoleViewModel>().ReverseMap().PreserveReferences();
+                cfg.CreateMap<AppUser, AppUserViewModel>().PreserveReferences();
+                cfg.CreateMap<Function, FunctionViewModel>().PreserveReferences();
+                cfg.CreateMap<Function, FunctionViewModel>().ReverseMap().PreserveReferences();
+                cfg.CreateMap<Permission, PermissionViewModel>().PreserveReferences();
             });
         }
     }

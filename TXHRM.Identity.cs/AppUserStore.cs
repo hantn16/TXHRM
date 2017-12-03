@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using TXHRM.Data;
 using TXHRM.Model.Models;
 
-namespace TXHRM.Identity.cs
+namespace TXHRM.Identity
 {
-    class AppUserStore : UserStore<AppUser>
+    public class AppUserStore : UserStore<AppUser>
     {
         public AppUserStore(TXHRMDbContext context) : base(context)
         {

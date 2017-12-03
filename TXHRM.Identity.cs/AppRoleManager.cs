@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using TXHRM.Data;
 using TXHRM.Model.Models;
 
-namespace TXHRM.Identity.cs
+namespace TXHRM.Identity
 {
     public class AppRoleManager : RoleManager<AppRole>
     {

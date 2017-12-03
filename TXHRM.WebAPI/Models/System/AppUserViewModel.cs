@@ -8,19 +8,19 @@ namespace TXHRM.WebAPI.Models
 {
     public class AppUserViewModel
     {
-        [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
+        public string Id { set; get; }
+        public string FullName { set; get; }
+        public string BirthDay { set; get; }
+        public string Email { set; get; }
+        public string Password { set; get; }
+        public string UserName { set; get; }
+        public string Address { get; set; }
+        public string PhoneNumber { set; get; }
+        public string Avatar { get; set; }
+        public bool Status { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
+        public string Gender { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        public ICollection<string> Roles { get; set; }
     }
 }

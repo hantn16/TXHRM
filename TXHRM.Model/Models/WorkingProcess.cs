@@ -9,13 +9,13 @@ namespace TXHRM.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long ID { get; set; }
+        public long Id { get; set; }
 
-        public long EmployeeID { get; set; }
+        public long EmployeeId { get; set; }
 
-        public int DepartmentID { get; set; }
+        public int DepartmentId { get; set; }
 
-        public int PositionID { get; set; }
+        public int PositionId { get; set; }
 
         [Required]
         public DateTime StartDate { get; set; }
@@ -24,13 +24,13 @@ namespace TXHRM.Model.Models
         public DateTime EndDate { get; set; }
 
         //Navigation Properties
-        [ForeignKey("EmployeeID")]
+        [ForeignKey("EmployeeId")]
         public virtual Employee Employee { get; set; }
 
-        [ForeignKey("DepartmentID")]
+        [ForeignKey("DepartmentId")]
         public virtual Department Department { get; set; }
 
-        [ForeignKey("PositionID")]
+        [ForeignKey("PositionId")]
         public virtual Position Position { get; set; }
     }
 }
