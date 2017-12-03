@@ -35,8 +35,6 @@ namespace TXHRM.Model.Models
 
         public bool? HomeFlag { get; set; }
 
-        [MaxLength(256)]
-        public string Image { get; set; }
         //Thuộc tính navigation
         public virtual IEnumerable<Post> Posts { get; set; }
 

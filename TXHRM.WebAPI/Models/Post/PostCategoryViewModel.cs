@@ -25,7 +25,6 @@ namespace TXHRM.WebAPI.Models
 
         public bool? HomeFlag { get; set; }
 
-        public string Image { get; set; }
         //Thuộc tính navigation
         public virtual IEnumerable<PostViewModel> Posts { get; set; }
 

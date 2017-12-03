@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201711260313093_InitialDb.Designer.cs">
       <DependentUpon>201711260313093_InitialDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712030543543_ChangeIDtoId.cs" />
+    <Compile Include="Migrations\201712030543543_ChangeIDtoId.Designer.cs">
+      <DependentUpon>201712030543543_ChangeIDtoId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\DepartmentRepository.cs" />
@@ -103,6 +107,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711260313093_InitialDb.resx">
       <DependentUpon>201711260313093_InitialDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712030543543_ChangeIDtoId.resx">
+      <DependentUpon>201712030543543_ChangeIDtoId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
